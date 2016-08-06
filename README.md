@@ -1,12 +1,9 @@
-# vagrant-meteor 
+# annako-meteor
 
 ![Vagrant](http://www.layh.com/wp-content/uploads/2014/05/logo_vagrant.png)
 ![MeteorJS](http://i.imgur.com/04sEyZU.png)
 
-A Vagrant Machine with MeteorJS ready to use !
-
-https://www.meteor.com/
-
+Move site from mojolicious to the meteor
 
 ### Prerequisite
 
@@ -19,7 +16,7 @@ https://www.meteor.com/
 Clone the repository
 
 ```sh
-$ git clone https://github.com/michaelbontyes/vagrant-meteor.git
+$ git clone https://github.com/artembaryshev/annako-ws.git
 ```
 
 Run the Vagrant Meteor Machine
@@ -36,12 +33,12 @@ $ vagrant reload --provision
 
 Open the app from you browser
 
-**192.168.87.87:3000**
+**2.2.2.2:3000**
 
 
 ### Usage
 
-All the Meteor files are in the folder /vagrant-meteor/app/
+All the Meteor files are in the folder /app/
 
 [Virtual Box]:https://www.virtualbox.org/
 [Vagrant]:https://www.vagrantup.com/
