@@ -2,6 +2,8 @@ React = require('react');
 ReactRouter = require('react-router');
 ReactHelmet = require('react-helmet');
 
+import Home from './react-components/home/home.jsx';
+
 App = React.createClass({
   getInitialState() {
     // ItemsSub = Meteor.subscribe("items", () => {
@@ -24,25 +26,6 @@ App = React.createClass({
 
 const {Route, Router, Link} = ReactRouter;
 
-var Home = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <ReactHelmet
-            title="My Title"
-            titleTemplate="MySite.com - %s"
-            defaultTitle="My Default Title"
-            meta={[
-                {"name": "description", "content": "Helmet application"},
-                {"property": "og:type", "content": "article"}
-            ]}
-        />
-        <h1>Home</h1>
-        <Link to="/home2">home2</Link>
-      </div>
-    );
-  }
-});
 var Home2 = React.createClass({
   render: function() {
     return (
@@ -63,17 +46,22 @@ var Home2 = React.createClass({
   }
 });
 
-Meteor.startup( function() {  
+Meteor.startup(function() {
   AppRoutes = (
-    <Router  >
+    <Router>
       <Route component={App}>
         <Route path="/" component={Home} />
         <Route path="/home2" component={Home2} />
       </Route>
     </Router>
   );
-
-  ReactRouterSSR.Run(AppRoutes, {}, {
+  ReactRouterSSR.Run(AppRoutes, {
+    props: {
+      onUpdate() {
+        $(window).trigger('annako.root.spaupdate')
+      }
+    }
+  }, {
     htmlHook: function (data) {
       const head = ReactHelmet.rewind();
       return data.replace('<head>', '<head>' + head.title + head.base + head.meta + head.link + head.script);
