@@ -2,6 +2,7 @@ React = require('react');
 ReactRouter = require('react-router');
 ReactHelmet = require('react-helmet');
 
+import CommonNavigation from './react-components/navigation/common-navigation.jsx';
 import Home from './react-components/home/home.jsx';
 
 App = React.createClass({
@@ -16,7 +17,13 @@ App = React.createClass({
   render() {
     return (
       <div>
+        <ReactHelmet
+          link={[
+            {href: "https://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet"}
+          ]}
+        />
         <header>Header { (this.state.isReady) ? "(..sub ready, live data now!)" : null }</header>
+        <CommonNavigation />
         {this.props.children}
         <footer>Footer</footer>
       </div>
@@ -51,7 +58,7 @@ Meteor.startup(function() {
     <Router>
       <Route component={App}>
         <Route path="/" component={Home} />
-        <Route path="/home2" component={Home2} />
+        <Route path="/portfolio/" component={Home2} />
       </Route>
     </Router>
   );
